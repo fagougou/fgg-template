@@ -1,0 +1,15 @@
+  [
+    {
+      "method": "GET",
+      "path": "/user/:id",
+      "handler": "model.getById",
+      "description": "测试-根据id获取用户信息"
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "handler": "controller.getUsers",
+      "description": "测试-获取所有用户信息",
+      "authorise": true
+    }
+  ]

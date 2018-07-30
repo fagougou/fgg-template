@@ -1,0 +1,29 @@
+{
+  "name": "fgg-web",
+  "version": "0.0.1",
+  "description": "基于法狗狗业务需求总结出的web框架，可作为法狗狗项目模板使用，帮助快速完成项目初始化，快速进入项目开发阶段",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha ./server/test/*",
+    "start": "node ./server/bin/www",
+    "mock-server": "MOCK=true node ./server/bin/www",
+    "gen": "node ./server/bin/init"
+  },
+  "author": "fgg-zero",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "http-errors": "^1.6.3",
+    "mongoose": "^5.2.5",
+    "morgan": "^1.9.0",
+    "q": "^1.5.1",
+    "request": "^2.87.0",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
+  }
+}

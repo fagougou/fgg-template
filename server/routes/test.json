@@ -1,0 +1,39 @@
+  [
+    {
+      "method": "GET",
+      "path": "/test",
+      "handler": "controller.test",
+      "description": "测试接口"
+    },
+    {
+      "method": "GET",
+      "path": "/test3",
+      "handler": "controller.test3",
+      "description": "测试接口",
+      "authorise": true
+    },
+    {
+      "method": "GET",
+      "path": "/test2",
+      "handler": "controller.test2",
+      "description": "测试接口"
+    },
+    {
+      "method": "GET",
+      "path": "/test4",
+      "handler": "controller.test4",
+      "description": "测试接口"
+    },
+    {
+      "method": "GET",
+      "path": "/test5",
+      "handler": "controller.test5",
+      "description": "测试接口"
+    },
+    {
+      "method": "GET",
+      "path": "/test6",
+      "handler": "controller.test6",
+      "description": "测试接口"
+    }
+  ]
