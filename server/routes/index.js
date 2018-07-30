@@ -46,10 +46,10 @@ routerTable.forEach((r) => {
     const handlerName = r.handler.split('.')[1]
     const modelName = r.file.substring(0, 1).toUpperCase() + r.file.substring(1)
     let handler = handlerType === 'model' ? app.model[modelName][handlerName] : app.controller[r.file] && app.controller[r.file][handlerName]
-    try {
-        router[method](`${r.path}`, async (req, res, next) => {
+
+    router[method](`${r.path}`, async (req, res, next) => {
+        try {
             const handlerResult = await handler(req)
-            // console.log(handlerResult)
             // handler
             if (typeof handlerResult !== 'promise') {
                 res.send({
@@ -60,19 +60,20 @@ routerTable.forEach((r) => {
                 const result = await handlerResult()
                 // 直接返回controller执行结果
                 if (req['Direct-Response']) {
-                    res.send(resolved)
+                    res.send(result)
                 } else {
                     res.send({
                         status: 'ok',
-                        data: resolved
+                        data: result
                     })
                 }
             }
-        })
-        console.log(`[load router]:${method} - ${r.path}`)
-    } catch (e) {
-        return next(error)
-    }
+        } catch (e) {
+            next(e)
+        }
+    })
+    console.log(`[load router]:${method} - ${r.path}`)
+
 })
 
 module.exports = {
