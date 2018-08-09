@@ -21,7 +21,7 @@ RUN cd /tmp && \
     mkdir -p /app && \
     cp -a /tmp/node_modules /app
 
-# Uncomment the lien below if you are using VUE
+# Uncomment the line below if you are using VUE
 # RUN apk del make gcc g++ python
 
 WORKDIR /app
