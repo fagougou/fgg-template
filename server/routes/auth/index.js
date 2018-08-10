@@ -3,6 +3,5 @@
 // 授权失败 - 返回false / promise reject false / throw error
 
 module.exports = function defaultAuth () {
-
-  return false
+    return false
 }

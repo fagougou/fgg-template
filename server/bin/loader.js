@@ -1,13 +1,13 @@
 /**
  * 加载路由、Model、插件
- * 
+ *
  */
 const fs = require('fs')
 const path = require('path')
 const mixin = require('merge-descriptors')
 const CRUD = require('../plugins/restful')
 
-this.loadController = function loadController() {
+this.loadController = function loadController () {
     // 加载插件、控制器和数据模型
     const controller = {}
     const mockCtrlers = fs.readdirSync(path.resolve(__dirname, '../controller/mock'))
@@ -27,7 +27,7 @@ this.loadController = function loadController() {
     return controller
 }
 
-this.loadModel = function loadModel() {
+this.loadModel = function loadModel () {
     const models = {}
     const modelsFile = fs.readdirSync(path.resolve(__dirname, '../models'))
 

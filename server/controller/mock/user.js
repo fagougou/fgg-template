@@ -1,6 +1,5 @@
-module.exports = this 
+module.exports = this
 
-this.getUsers = function(req){
-
-    return true 
+this.getUsers = function (req) {
+    return true
 }

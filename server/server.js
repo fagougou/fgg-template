@@ -1,10 +1,10 @@
-const createError = require('http-errors')
+// const createError = require('http-errors')
 const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
+// const path = require('path')
+// const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const { mongoConnect } = require('./bin/connection')
-const config = require('./config')
+// const config = require('./config')
 const app = express()
 
 const ERRORCODE = require('./errorcode.json')
@@ -21,15 +21,14 @@ app.plugin = loader.loadPlugin()
 mongoConnect().then(startServer)
 // view engine setup
 
-function startServer() {
+function startServer () {
     // TODO:: 中间件处理
 
     app.use(logger('short', {
-      skip: (req) => {return req.method === 'HEAD'}
+        skip: (req) => { return req.method === 'HEAD' }
     }))
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))
-
 
     const { indexRouter, routerTable } = require('./routes/index')
     app.use(async function (req, res, next) {
@@ -53,7 +52,7 @@ function startServer() {
         })
 
         if (matchedRouter && matchedRouter['authorise']) {
-            auth = matchedRouter.auth || require('./routes/auth')
+            const auth = matchedRouter.auth || require('./routes/auth')
 
             try {
                 const result = await auth(req)
@@ -63,7 +62,6 @@ function startServer() {
             } catch (e) {
                 next(new Error(`10003`))
             }
-
         }
         next()
     })
