@@ -24,7 +24,9 @@ mongoConnect().then(startServer)
 function startServer() {
     // TODO:: 中间件处理
 
-    app.use(logger('dev'))
+    app.use(logger('short', {
+      skip: (req) => {return req.method === 'HEAD'}
+    }))
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))
 
