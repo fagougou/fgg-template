@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha ./server/test/*",
+    "lint": "node_modules/eslint/bin/eslint.js . --fix",
     "start": "node ./server/bin/www",
     "mock-server": "MOCK=true node ./server/bin/www",
     "gen": "node ./server/bin/init"
