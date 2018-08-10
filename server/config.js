@@ -26,7 +26,7 @@ module.exports = {
         username: MONGO_USER,
         password: MONGO_PASSWORD,
         options: {
-            native_parser: true,
+            useNewUrlParser: true,
             poolSize: 5,
             connectTimeoutMS: 40000,
             authSource: 'admin'
