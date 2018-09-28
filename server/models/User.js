@@ -13,8 +13,8 @@ const schema = new Schema({
     wechat: String, // 微信号
     convertDate: Date, // 转化日期
     isConvert: Boolean,
-    isTarget: {type: Boolean, default: false}, // 是否为目标案源
-    isTargetModify: {type: Boolean, default: false},
+    isTarget: { type: Boolean, default: false }, // 是否为目标案源
+    isTargetModify: { type: Boolean, default: false },
     signAmount: String, // 标的额
     signAmountModify: String,
     serviceStaff: String, // 咨询的客服人员
@@ -24,19 +24,19 @@ const schema = new Schema({
     region: String, // 地区
     userNote: String, // 用户笔记
     address: String, // 地址
-    appeal: {type: String, default: ''}, // 诉求
+    appeal: { type: String, default: '' }, // 诉求
     data: {
-        '在职月数': {type: Number, default: 0},
-        '离职月数': {type: Number, default: 0},
-        '月工资': {type: Number, default: 0},
-        '降薪数': {type: Number, default: 0},
-        '降薪月数': {type: Number, default: 0},
-        '拖欠工资月数': {type: Number, default: 0},
-        '是否交社保': {type: Boolean, default: false},
-        '是否签劳动合同': {type: Boolean, default: false},
-        '是否拖欠工资': {type: Boolean, default: false},
-        '是否被辞退': {type: Boolean, default: false},
-        '是否调岗降薪': {type: Boolean, default: false}
+        '在职月数': { type: Number, default: 0 },
+        '离职月数': { type: Number, default: 0 },
+        '月工资': { type: Number, default: 0 },
+        '降薪数': { type: Number, default: 0 },
+        '降薪月数': { type: Number, default: 0 },
+        '拖欠工资月数': { type: Number, default: 0 },
+        '是否交社保': { type: Boolean, default: false },
+        '是否签劳动合同': { type: Boolean, default: false },
+        '是否拖欠工资': { type: Boolean, default: false },
+        '是否被辞退': { type: Boolean, default: false },
+        '是否调岗降薪': { type: Boolean, default: false }
     }, // 收集到的数据
     evidences: Array, // 风险评估
     activationDate: Date, // 激活案件时间

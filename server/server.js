@@ -13,6 +13,7 @@ module.exports = app
 
 // controller loader & model loader
 const loader = require('./bin/loader')
+
 app.model = loader.loadModel()
 app.controller = loader.loadController()
 app.plugin = loader.loadPlugin()
@@ -31,6 +32,7 @@ function startServer () {
     app.use(express.urlencoded({ extended: false }))
 
     const { indexRouter, routerTable } = require('./routes/index')
+
     app.use(async function (req, res, next) {
         const method = req.method
         const reqPath = req.path.split('/')
@@ -38,16 +40,20 @@ function startServer () {
         const matchedRouter = routerTable.find((item) => {
             let isMatched = true
             const routePath = item.path.split('/')
+
             if (routePath.length !== reqPath.length || method !== item.method) {
                 isMatched = false
+
                 return false
             }
+
             for (let i = 0; i < routePath.length; i++) {
                 if (routePath[i] !== reqPath[i] && routePath[i].indexOf(':') < 0) {
                     isMatched = false
                     break
                 }
             }
+
             return isMatched
         })
 
@@ -56,13 +62,16 @@ function startServer () {
 
             try {
                 const result = await auth(req)
+
                 if (!result) {
-                    next(new Error(`10003`))
+                    next(new Error('10003'))
                 }
             } catch (e) {
-                next(new Error(`10003`))
+                console.error(e.stack)
+                next(new Error('10003'))
             }
         }
+
         next()
     })
 
@@ -71,6 +80,7 @@ function startServer () {
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {
         const err = new Error('10002')
+
         err.status = 404
         next(err)
     })
@@ -84,11 +94,14 @@ function startServer () {
         let errorcode = err.message
         const error = ERRORCODE[errorcode] || ERRORCODE[DEFAULT_ERRORCODE]
         let errorMsg = error.message
+
         if (!parseInt(errorcode)) {
             errorcode = DEFAULT_ERRORCODE
             errorMsg = err.message
         }
+
         const errorStatusCode = error.statusCode || 500
+
         res.locals.error = req.app.get('env') === 'development' ? err : {}
         console.error(`
         ========ERROR::${new Date()}::ERROR===========

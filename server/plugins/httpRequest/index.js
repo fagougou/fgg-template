@@ -12,17 +12,22 @@ module.exports = function (method, path, postData = {}) {
         json: true
     }
     const d = q.defer()
+
     request(options, function (error, response, body) {
         if (error) {
-            console.log(error.stack.toString())
+            console.error(error.stack.toString())
+
             return d.reject(error)
-        };
+        }
+
         try {
             d.resolve(body)
         } catch (e) {
-            console.log(e.stack.toString())
+            console.error(e.stack.toString())
+
             return d.reject(e)
         }
     })
+
     return d.promise
 }

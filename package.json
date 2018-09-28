@@ -1,16 +1,16 @@
 {
-  "name": "fgg-web",
-  "version": "0.0.1",
+  "name": "fgg-template-node",
+  "version": "1.0.0",
   "description": "基于法狗狗业务需求总结出的web框架，可作为法狗狗项目模板使用，帮助快速完成项目初始化，快速进入项目开发阶段",
   "main": "server.js",
   "scripts": {
     "test": "mocha ./server/test/*",
-    "lint": "node_modules/eslint/bin/eslint.js . --fix",
+    "lint": "node_modules/eslint/bin/eslint.js . --fix --quiet",
     "start": "node ./server/bin/www",
     "mock-server": "MOCK=true node ./server/bin/www",
     "gen": "node ./server/bin/init"
   },
-  "author": "fgg-zero",
+  "author": "fgghackers",
   "license": "MIT",
   "dependencies": {
     "cookie-parser": "^1.4.3",
@@ -24,8 +24,10 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^5.3.0",
-    "eslint-config-standard": "^11.0.0",
+    "eslint": "^5.6.0",
+    "eslint-config-recommended": "^3.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^3.8.0",

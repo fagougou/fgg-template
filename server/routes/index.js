@@ -10,27 +10,36 @@ function getRouterTable () {
     let routerTable = []
     // 遍历routes下的json文件 合并成路由表
     const routerPath = path.resolve(__dirname, './')
+
     fs.readdirSync(routerPath).forEach((item) => {
         const routerConfig = path.resolve(__dirname, `./${item}`)
         const fileName = path.basename(routerConfig, '.json')
+
         if (path.extname(routerConfig) === '.json') {
             const authFile = path.resolve(__dirname, `./auth/${fileName}`)
             let auth = null
+
             try {
                 auth = require(authFile)
             } catch (e) {
+                console.error(e.stack)
             }
+
             const routers = require(routerConfig)
+
             routers.forEach((item) => {
                 if (auth && typeof auth === 'function') {
                     item.auth = auth
                 }
+
                 item.file = fileName
+
                 return item
             })
             routerTable = routerTable.concat(routers)
         }
     })
+
     return routerTable
 }
 
@@ -50,6 +59,7 @@ routerTable.forEach((r) => {
     router[method](`${r.path}`, async (req, res, next) => {
         try {
             const handlerResult = await handler(req)
+
             // handler
             if (handlerResult instanceof Promise) {
                 res.send({
@@ -58,6 +68,7 @@ routerTable.forEach((r) => {
                 })
             } else {
                 const result = await handlerResult()
+
                 // 直接返回controller执行结果
                 if (req['Direct-Response']) {
                     res.send(result)
@@ -72,7 +83,7 @@ routerTable.forEach((r) => {
             next(e)
         }
     })
-    console.log(`[load router]:${method} - ${r.path}`)
+    console.info(`[load router]:${method} - ${r.path}`)
 })
 
 module.exports = {
